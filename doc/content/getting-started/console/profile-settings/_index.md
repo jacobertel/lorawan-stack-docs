@@ -36,7 +36,7 @@ Type in your **Current password**, then create a **New password** and confirm it
 
 {{< note >}} Your password must be at least 8 characters long, and must contain at least 1 uppercase character and at least 1 digit. We recommend you create a strong password to enhance your profile's security. {{</ note >}}
 
-You can also choose to revoke all currently active sessions and access tokens by ticking the **Enabled** checkbox under **Revoke all access**.
+You can also choose to revoke all currently active sessions and access tokens by ticking the **Enabled** checkbox under **Revoke all access**. This will require you to log into the Console again using your newly created password.
 
 {{< figure src="change-password.png" alt="Change password" >}}
 
