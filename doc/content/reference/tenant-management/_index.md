@@ -25,7 +25,8 @@ This means all tenant management CLI commands will need to have the `--tenant-ad
 To create a new tenant with the tenant ID `tenant1`:
 
 ```
-$ tti-lw-cli tenant create tenant1 --tenant-admin-key 14596c0bdb9b11f6a97273e7c09167531571efa5898274e48660ee8d08f62b67
+$ TENANT_ADMIN_KEY=14596c0bdb9b11f6a97273e7c09167531571efa5898274e48660ee8d08f62b67
+$ tti-lw-cli tenant create tenant1 --tenant-admin-key $TENANT_ADMIN_KEY
 ```
 
 ### Get a Tenant
@@ -33,7 +34,7 @@ $ tti-lw-cli tenant create tenant1 --tenant-admin-key 14596c0bdb9b11f6a97273e7c0
 To get a tenant `tenant1`, i.e. to see details like when it was created or updated, and which its capabilities are:
 
 ```
-$ tti-lw-cli tenant get tenant1 --tenant-admin-key 14596c0bdb9b11f6a97273e7c09167531571efa5898274e48660ee8d08f62b67
+$ tti-lw-cli tenant get tenant1 --tenant-admin-key $TENANT_ADMIN_KEY
 ```
 
 ### List Tenants
@@ -41,7 +42,7 @@ $ tti-lw-cli tenant get tenant1 --tenant-admin-key 14596c0bdb9b11f6a97273e7c0916
 To get descriptions of all tenants:
 
 ```
-$ tti-lw-cli tenant list --tenant-admin-key 14596c0bdb9b11f6a97273e7c09167531571efa5898274e48660ee8d08f62b67
+$ tti-lw-cli tenant list --tenant-admin-key $TENANT_ADMIN_KEY
 ```
 
 ### Delete a Tenant
@@ -49,7 +50,7 @@ $ tti-lw-cli tenant list --tenant-admin-key 14596c0bdb9b11f6a97273e7c09167531571
 To delete a tenant `tenant1`:
 
 ```
-$ tti-lw-cli tenant delete tenant1 --tenant-admin-key 14596c0bdb9b11f6a97273e7c09167531571efa5898274e48660ee8d08f62b67
+$ tti-lw-cli tenant delete tenant1 --tenant-admin-key $TENANT_ADMIN_KEY
 ```
 
 ### Get Tenant Identifiers for Device EUIs
@@ -57,7 +58,7 @@ $ tti-lw-cli tenant delete tenant1 --tenant-admin-key 14596c0bdb9b11f6a97273e7c0
 To get a tenant ID based on your device's DevEUI and JoinEUI:
 
 ```
-$ tti-lw-cli tenant get-identifiers-for-end-device-euis --dev-eui 0004A30B001C0530 --join-eui 800000000000000C --tenant-admin-key 14596c0bdb9b11f6a97273e7c09167531571efa5898274e48660ee8d08f62b67
+$ tti-lw-cli tenant get-identifiers-for-end-device-euis --dev-eui 0004A30B001C0530 --join-eui 800000000000000C --tenant-admin-key $TENANT_ADMIN_KEY
 ```
 
 ### Get Tenant Identifiers for a Gateway EUI
@@ -65,7 +66,7 @@ $ tti-lw-cli tenant get-identifiers-for-end-device-euis --dev-eui 0004A30B001C05
 To get a tenant ID based on your gateways's EUI:
 
 ```
-$ tti-lw-cli tenant get-identifiers-for-gateway-eui --gateway-eui 00800000A00009EF --tenant-admin-key 14596c0bdb9b11f6a97273e7c09167531571efa5898274e48660ee8d08f62b67
+$ tti-lw-cli tenant get-identifiers-for-gateway-eui --gateway-eui 00800000A00009EF --tenant-admin-key $TENANT_ADMIN_KEY
 ```
 
 ### Search for Tenants
@@ -79,7 +80,7 @@ $ tti-lw-cli tenant search --help
 For example, to search for recently deleted tenants:
 
 ```
-$ tti-lw-cli tenant search --deleted --tenant-admin-key 14596c0bdb9b11f6a97273e7c09167531571efa5898274e48660ee8d08f62b67
+$ tti-lw-cli tenant search --deleted --tenant-admin-key $TENANT_ADMIN_KEY
 ```
 
 ### Update a Tenant
@@ -93,10 +94,12 @@ $ tti-lw-cli tenant update --help
 For example, to update a maximum number of end devices that can be registered in a tenant:
 
 ```
-$ tti-lw-cli tenant update --tenant-id tenant1 --max-end-devices 3 --tenant-admin-key 14596c0bdb9b11f6a97273e7c09167531571efa5898274e48660ee8d08f62b67
+$ tti-lw-cli tenant update --tenant-id tenant1 --max-end-devices 3 --tenant-admin-key $TENANT_ADMIN_KEY
 ```
 
 ## Setting a DevAddr Prefix for a Tenant
+
+In a multi-tenant deployment, different tenants share the same NetID, but they use different DevAddr blocks. DevAddr blocks need to be configured for every tenant in order for Packet Broker to be able to distinguish traffic that belongs to each of those tenants.
 
 Setting a DevAddr prefix for a tenant can be done using the `update` operation mentioned in the section above. To set a DevAddr prefix for a tenant `tenant1`:
 
